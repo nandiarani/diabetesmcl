@@ -83,4 +83,4 @@ def predict():
     resultPredict=clf[0].predict(X_New)
     return jsonify({'message': str(resultPredict)})
 
-app.run(debug=True)
+
