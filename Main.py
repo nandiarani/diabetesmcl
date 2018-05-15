@@ -68,19 +68,18 @@ def predict():
         200:
             description: Success input
     """
-    new_task= request.get_json()
-    Pregnancies= new_task['Pregnancies']
-    Glucose= new_task['Glucose']
-    BloodPressure= new_task['BloodPressure']
-    SkinThickness= new_task['SkinThickness']
-    Insulin= new_task['Insulin']
-    BMI= new_task['BMI']
-    DiabetesPredigreeFunction= new_task['DiabetesPredigreeFunction']
-    Age= new_task['Age']
+    Pregnancies= request.args['Pregnancies']
+    Glucose= request.args['Glucose']
+    BloodPressure= request.args['BloodPressure']
+    SkinThickness= request.args['SkinThickness']
+    Insulin= request.args['Insulin']
+    BMI= request.args['BMI']
+    DiabetesPredigreeFunction= request.args['DiabetesPredigreeFunction']
+    Age= request.args['Age']
 
     X_New= np.array([[Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPredigreeFunction,Age]])
     clf=joblib.load('Diabetes.pkl')
     resultPredict=clf[0].predict(X_New)
-    return jsonify({'message': str(resultPredict)})
+    return jsonify({'result': str(resultPredict[0])})
 
-
+app.run(debug=True)
