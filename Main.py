@@ -82,4 +82,3 @@ def predict():
     resultPredict=clf[0].predict(X_New)
     return jsonify({'result': str(resultPredict[0])})
 
-app.run(debug=True)
